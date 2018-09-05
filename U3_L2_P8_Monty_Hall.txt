@@ -1,0 +1,22 @@
+Originally, when you pick a door, there is a 1/3 chance you selected the right door.  After a door has been opened, there is now more information on the problem, but the chance that the right door was selected originally is still 1/3.  However, since we know one of the remaining doors is a goat, there is now a 2/3 chance that the other door is the car.  It is better to switch doors to improve the probability of winning the car from 1/3 to 2/3.
+
+Using Baye's Rule: (used https://medium.com/@NickDoesData/applying-bayes-theorem-simulating-the-monty-hall-problem-with-python-5054976d1fb5 to help figure out how to apply this).
+
+If I pick door A and Monty Hall opens door B:
+P(car @ A | open B) = P(open B | car @ A) * P(car @ A) / P(open B)
+
+P(open B) = P(open B | car @ A) * P(car @ A) + 
+            P(open B | car @ B) * P(car @ B) + 
+            P(open B | car @ C) * P(car @ C)
+            
+P(car @ A) = P(car @ C) = P(car @ B) = 1/3 (equal likelihood behind any of the doors given no other info)
+P(open B | car @ A) = 1/2  (since 50% chance he would open B or C if car at A)
+P(open B | car @ B) = 0    (won't open the door it is behind)
+P(open B | car @ C) = 1    (won't open C since it is behind C, so will open B)
+
+P(open B) = 1/2*1/3 + 0*1/3 + 1*1/3 = 1/2
+
+P(car @ A | open B) = 1/2 * 1/3 / 1/2 = 1/3
+
+P(car @ C | open B) = 1 - P(car @ A | open B) = 2/3
+
